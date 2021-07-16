@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
-#include<sys/stat.h>
+#include <sys/stat.h>
+#include "kisystem.h"
 
-char *LocalTime()
+char *LocalTime(void)
 {
     time_t rawTime;
     struct tm *timeinfo;
@@ -29,15 +30,15 @@ char *LocalTime()
 int CreateReport(char cFilenName[200], char cLocalTime[100])
 {
     FILE *fp;
-    int number,iRet;
+    int number, iRet;
     int numList[10];
     char buffer[30];
     char cTime[100];
     char fileName[200];
-//    char fileName[200] = "C:/Users/ks/Documents/CCPP/ReportCSV/";
+    //    char fileName[200] = "C:/Users/ks/Documents/CCPP/ReportCSV/";
 
-    strcpy(fileName,cFilenName);
-    strcpy(cTime,cLocalTime);
+    strcpy(fileName, cFilenName);
+    strcpy(cTime, cLocalTime);
 
     strncat(fileName, cTime, 16);
 
@@ -46,8 +47,8 @@ int CreateReport(char cFilenName[200], char cLocalTime[100])
 
     //Append Data On File If exist, If not Exist then create a file.
     strcat(fileName, "/");
-    strncat(fileName,cTime,19);
-    strcat(fileName,".csv");
+    strncat(fileName, cTime, 19);
+    strcat(fileName, ".csv");
     printf("File Name is %s\n", fileName);
 
     fp = fopen(fileName, "a+"); //Return-Type: FILE*
@@ -67,4 +68,9 @@ int CreateReport(char cFilenName[200], char cLocalTime[100])
 
     fclose(fp);
     return 0;
+}
+
+void testPrint()
+{
+    printf("Hello World Test\n");
 }
